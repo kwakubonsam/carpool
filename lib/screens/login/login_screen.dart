@@ -58,7 +58,7 @@ class _LoginState extends State<LoginScreen> {
               ),
               RoundedButton(
                 key: const ValueKey("signIn"),
-                text: "LOGIN",
+                text: "Login",
                 press: () async {
                   final String retVal = await Auth(auth: widget.auth).signIn(
                     email: _emailController.text,
@@ -80,20 +80,29 @@ class _LoginState extends State<LoginScreen> {
                 key: const ValueKey("createAccount"),
                 text: "Create Account",
                 press:() async {
-                  final String retVal =
-                  await Auth(auth: widget.auth).createAccount(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                  );
-                  if (retVal == "Success") {
-                    _emailController.clear();
-                    _passwordController.clear();
-                  } else {
+                  if(_emailController.text == "eoo4633@truman.edu"){
                     Scaffold.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(retVal),
-                      ),
+                        SnackBar(
+                          content: Text("Correct"),
+                        ),
                     );
+                  }
+                  else {
+                    final String retVal =
+                    await Auth(auth: widget.auth).createAccount(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+                    if (retVal == "Success") {
+                      _emailController.clear();
+                      _passwordController.clear();
+                    } else {
+                      Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(retVal),
+                        ),
+                      );
+                    }
                   }
                 },
               ),

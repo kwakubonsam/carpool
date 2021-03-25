@@ -1,23 +1,19 @@
+import 'package:carpool/models/passengermodel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:carpool/models/todo.dart';
 
 class Database {
-  final FirebaseFirestore firestore;
+  CollectionReference rides;
 
-  Database({this.firestore});
-
-  Stream<List<TodoModel>> streamTodos({String uid}) {
+  Database({this.rides});
+  Stream<List<PassengerModel>> streamRides() {
     try {
-      return firestore
-          .collection("todos")
-          .doc(uid)
-          .collection("todos")
-          .where("done", isEqualTo: false)
+      return rides
+          .where("time", isGreaterThan: DateTime.now().millisecondsSinceEpoch.toInt())
           .snapshots()
           .map((query) {
-        final List<TodoModel> retVal = <TodoModel>[];
+        final List<PassengerModel> retVal = <PassengerModel>[];
         for (final DocumentSnapshot doc in query.docs) {
-          retVal.add(TodoModel.fromDocumentSnapshot(documentSnapshot: doc));
+          retVal.add(PassengerModel.fromDocumentSnapshot(documentSnapshot: doc));
         }
         return retVal;
       });
@@ -26,11 +22,15 @@ class Database {
     }
   }
 
-  Future<void> addTodo({String uid, String content}) async {
+  Future<void> addTodo({String name, String destination, String price, String payment, String number, int time}) async {
     try {
-      firestore.collection("todos").doc(uid).collection("todos").add({
-        "content": content,
-        "done": false,
+      rides.add({
+        "name": name,
+        "destination": destination,
+        "price": price,
+        "payment":payment,
+        "number": number,
+        "time": time,
       });
     } catch (e) {
       rethrow;
@@ -39,8 +39,7 @@ class Database {
 
   Future<void> updateTodo({String uid, String todoId}) async {
     try {
-      firestore
-          .collection("todos")
+      rides
           .doc(uid)
           .collection("todos")
           .doc(todoId)

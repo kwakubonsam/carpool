@@ -15,7 +15,11 @@ class Auth {
       );
       return "Success";
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      if (e.code == 'email-already-in-use') {
+        return 'The account already exists for that email.';
+      } else if (e.code == 'weak-password') {
+        return 'The password provided is too weak.';
+      }
     } catch (e) {
       rethrow;
     }

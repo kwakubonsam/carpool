@@ -18,6 +18,7 @@ class TodoCard extends StatefulWidget {
 class _TodoCardState extends State<TodoCard> {
   @override
   Widget build(BuildContext context) {
+    CollectionReference rides;
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Padding(
@@ -37,7 +38,7 @@ class _TodoCardState extends State<TodoCard> {
               value: widget.todo.done,
               onChanged: (newValue) {
                 setState(() {});
-                Database(firestore: widget.firestore).updateTodo(
+                Database(rides: rides).updateTodo(
                   uid: widget.uid,
                   todoId: widget.todo.todoId,
                 );
