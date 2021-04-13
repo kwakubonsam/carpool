@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:carpool/components/rounded_button.dart';
 import 'package:carpool/components/toggle.dart';
 import 'package:carpool/components/rounded_input_field.dart';
-import 'package:carpool/components/rounded_password_field.dart';
+import 'package:carpool/components/already_have_an_account_acheck.dart';
+import 'package:carpool/screens/resetpassword.dart';
 import 'package:carpool/services/auth.dart';
-import 'package:carpool/screens/confirmemail.dart';
 import 'package:flutter_svg/svg.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -107,18 +106,18 @@ class _LoginState extends State<LoginScreen> {
                 },
               ),
               //SizedBox(height: size.height * 0.03),
-//            AlreadyHaveAnAccountCheck(
-//              press: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                    builder: (context) {
-//                      return SignUpScreen();
-//                    },
-//                  ),
-//                );
-//              },
-//            ),
+            AlreadyHaveAnAccountCheck(
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PasswordReset(auth: widget.auth);
+                    },
+                  ),
+                );
+              },
+            ),
             ],
           );
         }),

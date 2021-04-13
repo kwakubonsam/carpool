@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:carpool/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-
-
 class ConfirmEmail extends StatefulWidget {
   final FirebaseAuth auth;
 
@@ -27,29 +24,34 @@ class _ConfrimEmailState extends State<ConfirmEmail> {
       body: Container(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 200),
+            SizedBox(height: 250),
             Center(
               child: Padding(
-                  padding:const EdgeInsets.all(50.0),
-              child: Text(
-                'An email has just been sent to you, click the link provided to complete registration',
-                style: TextStyle(color: Colors.black, fontSize: 16),
-              )),
+                  padding: const EdgeInsets.all(50.0),
+                  child: Text(
+                    'An email will be sent to you, click the link provided to complete registration.'
+                    ' (Remember to check spam box)',
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  )),
             ),
-            MaterialButton(
-              color: Color(0xFF6F35A5),
-              child: Text(
-                "OK",
-                style: TextStyle(color: Colors.white),
+            Center(
+              child: MaterialButton(
+                color: Color(0xFF6F35A5),
+                child: Text(
+                  "Confirm Email",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () async {
+                  User user = widget.auth.currentUser;
+                  await user.reload();
+                  user.sendEmailVerification();
+                  widget.auth.signOut();
+                },
               ),
-              onPressed: ()async {
-                User user = widget.auth.currentUser;
-                await user.reload();
-                user.sendEmailVerification();
-                widget.auth.signOut();
-              },
             ),
-        ],),
+
+          ],
+        ),
       ),
     );
   }

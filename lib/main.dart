@@ -67,7 +67,6 @@ class _RootState extends State<Root> {
               auth: _auth,
             ) : ConfirmEmail(auth: _auth);
           } else {
-            print("fuck this");
             return LoginScreen(auth: _auth);
           }
         } else {
