@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carpool/services/database.dart';
 import 'package:carpool/models/passengermodel.dart';
 import 'package:intl/intl.dart';
+import 'package:carpool/constants.dart';
 
 class RideSearch extends SearchDelegate<PassengerModel> {
   final Stream<List<PassengerModel>> ride;
@@ -50,11 +51,11 @@ class RideSearch extends SearchDelegate<PassengerModel> {
             child: Text('Ride not found'),
           );
         }
-        if(query.toString() == ""){
-          return Center(
-            child: Text('No data'),
-          );
-        }
+//        if(query.toString() == ""){
+//          return Center(
+//            child: Text('No data'),
+//          );
+//        }
         return ListView(
           children: results
               .map<Widget>((a) => Card(
@@ -69,6 +70,7 @@ class RideSearch extends SearchDelegate<PassengerModel> {
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
+                      color: kPrimaryColor,
                     ),
                   ),
                   Text(

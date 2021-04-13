@@ -46,7 +46,7 @@ class _PassengerState extends State<Passenger> {
                   if (snapshot.data.isEmpty) {
                     return const Center(
                       child: Text(
-                        "There's currently no rides",
+                        "No rides available",
                         style: TextStyle(fontSize: 30),
                       ),
                     );

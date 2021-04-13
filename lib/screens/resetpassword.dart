@@ -56,7 +56,7 @@ class _PasswordResetState extends State<PasswordReset> {
                               _emailController.clear();
                               Scaffold.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text("A reset email has been sent to you"),
+                                  content: Text("A reset email has been sent to you (Check spam if not found)"),
                                 ),
                               );
                             } else {

@@ -22,7 +22,7 @@ class Database {
     }
   }
 
-  Future<void> addTodo({String name, String destination, String price, String payment, String number, int time}) async {
+  Future<void> addRide({String name, String destination, String price, String payment, String number, int time}) async {
     try {
       rides.add({
         "name": name,
@@ -37,17 +37,4 @@ class Database {
     }
   }
 
-  Future<void> updateTodo({String uid, String todoId}) async {
-    try {
-      rides
-          .doc(uid)
-          .collection("todos")
-          .doc(todoId)
-          .update({
-        "done": true,
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
 }

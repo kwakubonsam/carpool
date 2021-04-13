@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carpool/components/rounded_button.dart';
-import 'package:carpool/components/toggle.dart';
-import 'package:carpool/screens/login/login_screen.dart';
 import 'package:carpool/screens/driver/drivers.dart';
 import 'package:carpool/screens/passenger/passenger.dart';
 import 'package:carpool/services/auth.dart';

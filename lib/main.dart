@@ -1,9 +1,6 @@
 import 'package:carpool/screens/confirmemail.dart';
-import 'package:carpool/screens/welcome/welcome_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:carpool/screens/home.dart';
 import 'package:carpool/screens/login/login_screen.dart';

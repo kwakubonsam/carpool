@@ -152,7 +152,7 @@ class _DriverState extends State<Driver> {
                         _formKey.currentState.validate();
                         if (_formKey.currentState.validate()) {
                           _formKey.currentState.save();
-                          Database(rides: rides).addTodo(
+                          Database(rides: rides).addRide(
                             time: _date,
                             name: _name,
                             destination: _destination,
