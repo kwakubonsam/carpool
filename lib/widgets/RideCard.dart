@@ -24,7 +24,7 @@ class _RideCardState extends State<RideCard> {
   Widget build(BuildContext context) {
     DateTime date = new DateTime.fromMillisecondsSinceEpoch(widget.ride.datetime);
     return Card(
-      shadowColor: Color(0xFF6F35A5),
+      shadowColor: kPrimaryColor,
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Padding(
           padding: const EdgeInsets.all(30.0),
@@ -35,6 +35,7 @@ class _RideCardState extends State<RideCard> {
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                color: kPrimaryColor,
               ),
             ),
             Text(
@@ -46,7 +47,7 @@ class _RideCardState extends State<RideCard> {
               ),
             ),
             Text(
-              "Phone number: +" + widget.ride.number,
+              "Phone number: " + "("+widget.ride.number.substring(0,3) +")"+widget.ride.number.substring(3,10),
               textAlign: TextAlign.start,
               style: const TextStyle(
                 fontSize: 15,
@@ -70,7 +71,7 @@ class _RideCardState extends State<RideCard> {
               ),
             ),
          Text(
-              "Date: " + new DateFormat.yMMMd().format(date),
+              "Trip Date: " + new DateFormat.yMMMd().format(date),
               textAlign: TextAlign.start,
               style: const TextStyle(
                 fontSize: 15,
@@ -78,7 +79,7 @@ class _RideCardState extends State<RideCard> {
               ),
             ),
             Text(
-              "Time: " +  new DateFormat.jm().format(DateTime.parse(date.toString())),
+              "Trip Time: " +  new DateFormat.jm().format(DateTime.parse(date.toString())),
               textAlign: TextAlign.start,
               style: const TextStyle(
                 fontSize: 15,

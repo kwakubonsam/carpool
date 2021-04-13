@@ -6,16 +6,15 @@ import 'package:carpool/components/toggle.dart';
 import 'package:carpool/components/rounded_input_field.dart';
 import 'package:carpool/components/rounded_password_field.dart';
 import 'package:carpool/services/auth.dart';
+import 'package:carpool/screens/confirmemail.dart';
 import 'package:flutter_svg/svg.dart';
 
 class LoginScreen extends StatefulWidget {
   final FirebaseAuth auth;
-  final FirebaseFirestore firestore;
 
   const LoginScreen({
     Key key,
     @required this.auth,
-    @required this.firestore,
   }) : super(key: key);
   @override
   _LoginState createState() => _LoginState();
@@ -24,6 +23,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  RegExp email = RegExp(r'[a-z]{2,3}\d{4}@truman+\.edu');
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -80,10 +80,10 @@ class _LoginState extends State<LoginScreen> {
                 key: const ValueKey("createAccount"),
                 text: "Create Account",
                 press:() async {
-                  if(_emailController.text == "eoo4633@truman.edu"){
+                  if(!email.hasMatch(_emailController.text)){
                     Scaffold.of(context).showSnackBar(
                         SnackBar(
-                          content: Text("Correct"),
+                          content: Text("Invalid Email"),
                         ),
                     );
                   }

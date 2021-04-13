@@ -1,8 +1,8 @@
+import 'package:carpool/screens/confirmemail.dart';
 import 'package:carpool/screens/welcome/welcome_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:carpool/screens/home.dart';
@@ -55,23 +55,20 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: Auth(auth: _auth).user,
+      stream:Auth(auth: _auth).onAuthStateChanged,
       builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
-          if (snapshot.data?.uid == null) {
-            return LoginScreen(
+          if (snapshot.data?.uid != null) {
+            snapshot.data.reload();
+            return snapshot.data.emailVerified ? Home(
               auth: _auth,
-              firestore: _firestore,
-            );
+            ) : ConfirmEmail(auth: _auth);
           } else {
-            return Home(
-              auth: _auth,
-              firestore: _firestore,
-            );
+            print("fuck this");
+            return LoginScreen(auth: _auth);
           }
         } else {
           return const Scaffold(

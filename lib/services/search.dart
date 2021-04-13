@@ -80,7 +80,7 @@ class RideSearch extends SearchDelegate<PassengerModel> {
                     ),
                   ),
                   Text(
-                    "Phone number: +" + a.number,
+                    "Phone number: " + "("+a.number.substring(0,3) +")"+a.number.substring(3,10),
                     textAlign: TextAlign.start,
                     style: const TextStyle(
                       fontSize: 15,
@@ -104,7 +104,7 @@ class RideSearch extends SearchDelegate<PassengerModel> {
                     ),
                   ),
                   Text(
-                    "Date: " + new DateFormat.yMMMd().format(new DateTime.fromMillisecondsSinceEpoch(a.datetime)),
+                    " Trip Date: " + new DateFormat.yMMMd().format(new DateTime.fromMillisecondsSinceEpoch(a.datetime)),
                     textAlign: TextAlign.start,
                     style: const TextStyle(
                       fontSize: 15,
@@ -112,7 +112,7 @@ class RideSearch extends SearchDelegate<PassengerModel> {
                     ),
                   ),
                   Text(
-                    "Time: " +  new DateFormat.jm().format(DateTime.parse(new DateTime.fromMillisecondsSinceEpoch(a.datetime).toString())),
+                    "Trip Time: " +  new DateFormat.jm().format(DateTime.parse(new DateTime.fromMillisecondsSinceEpoch(a.datetime).toString())),
                     textAlign: TextAlign.start,
                     style: const TextStyle(
                       fontSize: 15,

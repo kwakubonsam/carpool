@@ -8,14 +8,12 @@ import 'package:carpool/screens/driver/drivers.dart';
 import 'package:carpool/screens/passenger/passenger.dart';
 import 'package:carpool/services/auth.dart';
 import 'package:carpool/constants.dart';
-//import 'package:todo_app/services/database.dart';
-//import 'package:todo_app/widgets/todo_card.dart';
+
 
 class Home extends StatefulWidget {
   final FirebaseAuth auth;
-  final FirebaseFirestore firestore;
 
-  const Home({Key key, this.auth, this.firestore}) : super(key: key);
+  const Home({Key key, this.auth}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
