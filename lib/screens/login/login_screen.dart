@@ -82,7 +82,7 @@ class _LoginState extends State<LoginScreen> {
                   if(!email.hasMatch(_emailController.text)){
                     Scaffold.of(context).showSnackBar(
                         SnackBar(
-                          content: Text("Invalid Email"),
+                          content: Text("Invalid Email, Use a valid Truman email"),
                         ),
                     );
                   }
