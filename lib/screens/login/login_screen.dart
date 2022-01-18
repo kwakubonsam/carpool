@@ -42,7 +42,7 @@ class _LoginState extends State<LoginScreen> {
 //              SizedBox(height: size.height * 0.01),
               Image.asset(
               "assets/images/cars.png",
-                height: 300,
+                height: 270,
                 width: 250,
               ),
               //SizedBox(height: size.height * 0.3),
@@ -82,7 +82,7 @@ class _LoginState extends State<LoginScreen> {
                   if(!email.hasMatch(_emailController.text)){
                     Scaffold.of(context).showSnackBar(
                         SnackBar(
-                          content: Text("Invalid Email, Use a valid Truman email"),
+                          content: Text("Invalid Email, use a valid Truman email"),
                         ),
                     );
                   }
